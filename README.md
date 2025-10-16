@@ -3,7 +3,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## Features
 
 - ✨ **Next.js 15.5.5** - Latest version with App Router
-- 🌍 **Internationalization (i18n)** - Support for English and Chinese
+- 🌍 **Internationalization (i18n)** - Support for English and Chinese (non-intrusive URL mode)
+- 🚀 **Strapi CMS Integration** - Pre-configured for headless CMS with multi-language support
 - 🎨 **Tailwind CSS v4** - Modern utility-first CSS framework
 - ⚡ **Turbopack** - Fast bundler for development and production
 - 📝 **TypeScript** - Type-safe development
@@ -27,50 +28,79 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Language Support
 
-The application supports multiple languages:
-- English: [http://localhost:3000/en](http://localhost:3000/en)
-- 中文: [http://localhost:3000/zh](http://localhost:3000/zh)
+The application supports multiple languages with **non-intrusive URL mode** (language stored in cookie):
+- All pages are accessible at the same URL: [http://localhost:3000](http://localhost:3000)
+- Switch languages using the language switcher in the top-right corner
+- Language preference is automatically saved
 
-You can switch between languages using the language switcher in the top-right corner.
-
-You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Internationalization (i18n)
 
-This project uses [next-intl](https://next-intl-docs.vercel.app/) for internationalization. For detailed documentation on how to use and extend the i18n functionality, please refer to:
+This project uses [next-intl](https://next-intl-docs.vercel.app/) for internationalization with **non-intrusive URL mode**. For detailed documentation on how to use and extend the i18n functionality, please refer to:
 
 📖 [i18n Configuration Guide](./docs/i18n.md)
 
 Key features:
-- Dynamic locale routing with `[locale]` segment
-- Automatic locale detection and redirection
-- Easy-to-use translation system with JSON files
-- Type-safe navigation hooks
-- Server and Client Component support
+- **Non-intrusive URLs** - No language prefix in URLs (e.g., `/` instead of `/en` or `/zh`)
+- **Cookie-based language storage** - User preference persists across sessions
+- **Seamless language switching** - Change language without page reload
+- **Easy-to-use translation system** with JSON files
+- **Server and Client Component support**
+
+## Strapi CMS Integration
+
+This project includes pre-configured integration with [Strapi](https://strapi.io/), a powerful headless CMS that supports multi-language content out of the box.
+
+📖 [Strapi Integration Guide](./docs/strapi-integration.md)
+
+### Quick Setup
+
+1. Create a `.env.local` file:
+   ```env
+   NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
+   STRAPI_API_TOKEN=your_api_token_here
+   ```
+
+2. Set up your Strapi instance with i18n enabled
+
+3. Visit `/strapi-example` to see the integration in action
+
+Key features:
+- **Multi-language content** - Automatic content fetching based on user's selected language
+- **Type-safe API client** - TypeScript definitions for Strapi responses
+- **Caching strategies** - Configurable cache and revalidation
+- **Rich content types** - Support for relations, media, and complex data structures
 
 ## Project Structure
 
 ```
 learning_nextjs_again/
 ├── app/
-│   ├── [locale]/           # Locale-specific pages
-│   │   ├── layout.tsx      # Root layout with i18n provider
-│   │   └── page.tsx        # Home page
+│   ├── layout.tsx          # Root layout with i18n provider
+│   ├── page.tsx            # Home page
+│   ├── strapi-example/     # Strapi integration example
 │   └── globals.css         # Global styles
 ├── components/
 │   └── LanguageSwitcher.tsx # Language toggle component
 ├── i18n/
 │   ├── config.ts           # i18n configuration
 │   ├── request.ts          # Request configuration
-│   └── routing.ts          # Routing and navigation utilities
+│   └── routing.ts          # Routing configuration (non-intrusive mode)
+├── lib/
+│   ├── locale.ts           # Cookie-based locale management
+│   └── strapi.ts           # Strapi API client
 ├── messages/
 │   ├── en.json             # English translations
 │   └── zh.json             # Chinese translations
+├── types/
+│   └── strapi.ts           # Strapi TypeScript definitions
 ├── docs/
-│   └── i18n.md             # Detailed i18n documentation
-└── middleware.ts           # Route middleware for i18n
+│   ├── i18n.md             # Detailed i18n documentation
+│   └── strapi-integration.md # Strapi setup guide
+└── middleware.ts           # i18n middleware
 ```
 
 ## Learn More

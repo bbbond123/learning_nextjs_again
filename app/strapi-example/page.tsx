@@ -1,4 +1,4 @@
-import { getLocale, useTranslations } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 import { getStrapiEntries } from '@/lib/strapi';
 import { Article } from '@/types/strapi';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 /**
  * 示例页面：从 Strapi 获取文章列表
- * 
+ *
  * 使用方法：
  * 1. 在 Strapi 中创建 Article 内容类型
  * 2. 配置多语言支持
@@ -16,7 +16,6 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 export default async function StrapiExamplePage() {
   const locale = await getLocale();
-  const t = useTranslations('HomePage');
 
   // 尝试从 Strapi 获取文章
   let articles: any[] = [];

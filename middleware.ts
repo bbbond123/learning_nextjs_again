@@ -1,7 +1,9 @@
-import createMiddleware from 'next-intl/middleware';
-import { routing } from './i18n/routing';
+import { NextRequest } from 'next/server';
 
-export default createMiddleware(routing);
+export function middleware(request: NextRequest) {
+  // 不做任何路由重定向，让 next-intl 通过 cookie 处理本地化
+  return;
+}
 
 export const config = {
   // Match all pathnames except for

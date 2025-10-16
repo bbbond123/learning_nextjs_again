@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
-export default function Home() {
-  const t = useTranslations('HomePage');
+export default async function Home() {
+  const t = await getTranslations('HomePage');
   
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">

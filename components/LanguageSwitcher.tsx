@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { useTransition } from 'react';
 import { setUserLocale } from '@/lib/locale';
+import { Locale } from '@/i18n/config';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
@@ -10,7 +11,7 @@ export default function LanguageSwitcher() {
 
   const onSelectChange = (newLocale: string) => {
     startTransition(() => {
-      setUserLocale(newLocale);
+      setUserLocale(newLocale as Locale);
     });
   };
 
