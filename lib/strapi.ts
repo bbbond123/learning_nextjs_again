@@ -3,6 +3,8 @@
  * 用于从 Strapi CMS 获取多语言内容
  */
 
+import { strapiLocaleMap } from '@/i18n/config';
+
 const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
@@ -58,9 +60,11 @@ export async function fetchStrapi<T>(
 
   // 构建查询参数
   const params = new URLSearchParams();
-  
+
   if (locale) {
-    params.append('locale', locale);
+    // 将前端 locale 映射到 Strapi locale (zh -> zh-CN)
+    const strapiLocale = strapiLocaleMap[locale as keyof typeof strapiLocaleMap] || locale;
+    params.append('locale', strapiLocale);
   }
 
   if (populate) {
@@ -85,9 +89,14 @@ export async function fetchStrapi<T>(
     }
   }
 
+  // 分页参数（必需，Strapi 要求必须传递分页参数）
   if (pagination) {
     if (pagination.page) params.append('pagination[page]', String(pagination.page));
     if (pagination.pageSize) params.append('pagination[pageSize]', String(pagination.pageSize));
+  } else {
+    // 如果没有提供分页参数，使用默认值
+    params.append('pagination[page]', '1');
+    params.append('pagination[pageSize]', '25');
   }
 
   const url = `${STRAPI_API_URL}/api${path}${params.toString() ? `?${params.toString()}` : ''}`;
@@ -96,6 +105,7 @@ export async function fetchStrapi<T>(
     'Content-Type': 'application/json',
   };
 
+  // Token 是可选的，如果配置了 Strapi Public 权限则不需要
   if (STRAPI_API_TOKEN) {
     headers['Authorization'] = `Bearer ${STRAPI_API_TOKEN}`;
   }
