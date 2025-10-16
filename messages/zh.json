@@ -1,0 +1,17 @@
+{
+  "HomePage": {
+    "title": "创建 Next 应用",
+    "description": "由 create next app 生成",
+    "getStarted": "开始编辑",
+    "saveChanges": "保存并即时查看您的更改。",
+    "deployNow": "立即部署",
+    "readDocs": "阅读文档",
+    "learn": "学习",
+    "examples": "示例",
+    "goToNextjs": "前往 nextjs.org"
+  },
+  "LanguageSwitcher": {
+    "switchLanguage": "切换语言"
+  }
+}
+
