@@ -3,41 +3,37 @@
  * 根据你的 Strapi CMS 配置进行调整
  */
 
-// 示例：文章类型
+/**
+ * Article 内容类型
+ * 基于 Strapi 后台实际配置
+ */
 export interface Article {
+  // 基础信息
+  id: number;
+  documentId: string;
   title: string;
-  description: string;
-  content: string;
   slug: string;
-  cover?: {
-    data?: {
-      id: number;
-      attributes: {
-        url: string;
-        alternativeText?: string;
-        width: number;
-        height: number;
-      };
-    };
-  };
-  author?: {
-    data?: {
-      id: number;
-      attributes: {
-        name: string;
-        email: string;
-      };
-    };
-  };
-  categories?: {
-    data: Array<{
-      id: number;
-      attributes: {
-        name: string;
-        slug: string;
-      };
-    }>;
-  };
+  content: string;
+  excerpt?: string | null;
+
+  // 统计信息（注意：API 返回的是字符串类型）
+  view_count?: string | null;
+  like_count?: string | null;
+
+  // 状态和分类
+  article_status: 'draft' | 'published' | 'archived' | 'active';
+  type?: 'article' | 'shortVideo' | 'longVideo' | null;
+
+  // 推荐和排序
+  pin_until?: string | null;
+  weight?: number | null;
+  is_recommended?: boolean | null;
+
+  // 系统字段
+  locale: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt?: string | null;
 }
 
 // 示例：页面类型

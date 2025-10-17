@@ -24,7 +24,8 @@ export default async function StrapiExamplePage() {
   try {
     const data = await getStrapiEntries<Article>('articles', {
       locale, // 根据当前语言获取内容
-      populate: ['cover', 'author', 'categories'],
+      // 注意：Article 没有 cover, author, categories 等关联字段
+      // populate: ['cover', 'author', 'categories'],
       sort: ['publishedAt:desc'],
       pagination: {
         pageSize: 10,
@@ -82,7 +83,7 @@ export default async function StrapiExamplePage() {
         </div>
       ) : articles.length > 0 ? (
         <div>
-          <h2 className="text-2xl font-bold mb-4">文章列表</h2>
+          <h2 className="text-2xl font-bold mb-4">文章列表 ({articles.length} 篇)</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
               <article
@@ -90,20 +91,39 @@ export default async function StrapiExamplePage() {
                 className="p-6 border border-gray-200 dark:border-gray-800 rounded-lg hover:shadow-lg transition-shadow"
               >
                 <h3 className="text-xl font-semibold mb-2">
-                  {article.attributes.title}
+                  {article.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                  {article.attributes.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500">
-                    {new Date(article.attributes.publishedAt).toLocaleDateString(
-                      locale === 'zh' ? 'zh-CN' : 'en-US'
-                    )}
-                  </span>
+                {article.excerpt && (
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                    {article.excerpt}
+                  </p>
+                )}
+                {article.content && !article.excerpt && (
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                    {article.content.substring(0, 150)}...
+                  </p>
+                )}
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  {article.publishedAt && (
+                    <span className="text-xs text-gray-500">
+                      {new Date(article.publishedAt).toLocaleDateString(
+                        locale === 'zh' ? 'zh-CN' : 'en-US'
+                      )}
+                    </span>
+                  )}
                   <span className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                    {article.attributes.locale}
+                    {article.locale}
                   </span>
+                  {article.view_count && (
+                    <span className="text-xs text-gray-500">
+                      👁 {article.view_count}
+                    </span>
+                  )}
+                  {article.like_count && (
+                    <span className="text-xs text-gray-500">
+                      ❤️ {article.like_count}
+                    </span>
+                  )}
                 </div>
               </article>
             ))}
