@@ -3,16 +3,18 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function Navigation() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const t = useTranslations('Navigation');
 
   const navItems = [
-    { href: '/', label: '首页', icon: '🏠' },
-    { href: '/blog/hello-mdx', label: 'MDX 基础', icon: '📝' },
-    { href: '/blog/advanced-mdx', label: 'MDX 高级', icon: '🚀' },
-    { href: '/strapi-example', label: 'Strapi 示例', icon: '📦' },
+    { href: '/', label: t('home'), icon: '🏠' },
+    { href: '/blog/hello-mdx', label: t('mdxBasic'), icon: '📝' },
+    { href: '/blog/advanced-mdx', label: t('mdxAdvanced'), icon: '🚀' },
+    { href: '/strapi-example', label: t('strapiExample'), icon: '📦' },
   ];
 
   const isActive = (href: string) => {
@@ -29,7 +31,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 font-bold text-lg hover:opacity-80 transition">
             <span className="text-2xl">⚡</span>
-            <span>Next.js + MDX</span>
+            <span>{t('brandName')}</span>
           </Link>
 
           {/* Desktop Navigation */}

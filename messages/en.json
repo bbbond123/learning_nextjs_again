@@ -10,6 +10,17 @@
     "examples": "Examples",
     "goToNextjs": "Go to nextjs.org"
   },
+  "Navigation": {
+    "home": "Home",
+    "mdxBasic": "MDX Basic",
+    "mdxAdvanced": "MDX Advanced",
+    "strapiExample": "Strapi Example",
+    "brandName": "Next.js + MDX"
+  },
+  "PageWrapper": {
+    "back": "Back",
+    "backToHome": "Back to Home"
+  },
   "LanguageSwitcher": {
     "switchLanguage": "Switch Language"
   }

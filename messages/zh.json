@@ -10,6 +10,17 @@
     "examples": "示例",
     "goToNextjs": "前往 nextjs.org"
   },
+  "Navigation": {
+    "home": "首页",
+    "mdxBasic": "MDX 基础",
+    "mdxAdvanced": "MDX 高级",
+    "strapiExample": "Strapi 示例",
+    "brandName": "Next.js + MDX"
+  },
+  "PageWrapper": {
+    "back": "返回",
+    "backToHome": "回到首页"
+  },
   "LanguageSwitcher": {
     "switchLanguage": "切换语言"
   }
