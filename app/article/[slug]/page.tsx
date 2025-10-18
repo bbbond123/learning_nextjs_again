@@ -1,3 +1,5 @@
+import PageWrapper from '@/components/PageWrapper';
+
 export default async function ArticlePage({
   params
 }: {
@@ -6,9 +8,13 @@ export default async function ArticlePage({
   const { slug } = await params;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold">Article: {slug}</h1>
-      <p className="mt-4">This is a placeholder for the article page.</p>
-    </div>
+    <PageWrapper title={`Article: ${slug}`}>
+      <div className="prose dark:prose-invert max-w-none">
+        <p className="mt-4">This is a placeholder for the article page.</p>
+        <p className="text-gray-600 dark:text-gray-400">
+          Article slug: <code>{slug}</code>
+        </p>
+      </div>
+    </PageWrapper>
   );
 }

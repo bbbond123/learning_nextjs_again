@@ -1,0 +1,239 @@
+import InteractiveCounter from '@/components/mdx/InteractiveCounter'
+import Callout from '@/components/mdx/Callout'
+import Chart from '@/components/mdx/Chart'
+import LiveCodeEditor from '@/components/mdx/LiveCodeEditor'
+
+export const metadata = {
+  title: 'MDX 高级特性演示',
+  description: '探索 MDX 的强大功能和高级用法'
+}
+
+# MDX 高级特性演示 🚀
+
+MDX 不仅仅是 Markdown + JSX，它是创建交互式文档的强大工具。
+
+---
+
+## 1. 交互式组件 🎮
+
+在 MDX 中可以嵌入完全交互式的 React 组件：
+
+<InteractiveCounter />
+
+**代码示例：**
+```jsx
+<InteractiveCounter />
+```
+
+这个计数器是一个完整的 React 组件，支持状态管理和事件处理！
+
+---
+
+## 2. 提示框组件 💡
+
+使用不同类型的提示框来突出重要信息：
+
+<Callout type="info" title="信息提示">
+这是一个信息类型的提示框，用于显示常规信息。
+</Callout>
+
+<Callout type="success" title="成功提示">
+操作成功！MDX 配置已完成。
+</Callout>
+
+<Callout type="warning" title="警告提示">
+注意：在生产环境中使用某些功能时需要谨慎。
+</Callout>
+
+<Callout type="error" title="错误提示">
+发生错误！请检查你的配置。
+</Callout>
+
+**使用方法：**
+```jsx
+<Callout type="info" title="标题">
+  这里是内容
+</Callout>
+```
+
+---
+
+## 3. 数据可视化 📊
+
+直接在 Markdown 中嵌入图表组件：
+
+<Chart
+  title="2024 年技术栈使用情况"
+  data={[
+    { label: 'React', value: 85 },
+    { label: 'Next.js', value: 78 },
+    { label: 'TypeScript', value: 92 },
+    { label: 'Tailwind CSS', value: 88 },
+    { label: 'MDX', value: 65 }
+  ]}
+/>
+
+**代码示例：**
+```jsx
+<Chart
+  title="标题"
+  data={[
+    { label: 'React', value: 85 },
+    { label: 'Next.js', value: 78 }
+  ]}
+/>
+```
+
+---
+
+## 4. 实时代码编辑器 💻
+
+最酷的功能之一：在文档中直接编辑和运行代码！
+
+<LiveCodeEditor />
+
+---
+
+## 5. 变量和表达式 🔢
+
+MDX 支持 JavaScript 表达式：
+
+export const author = 'MDX 大师'
+export const year = 2024
+export const technologies = ['React', 'Next.js', 'TypeScript', 'MDX']
+
+- **作者**: {author}
+- **年份**: {year}
+- **当前时间**: {new Date().toLocaleString('zh-CN')}
+- **技术栈数量**: {technologies.length}
+- **随机数**: {Math.floor(Math.random() * 100)}
+
+**定义变量：**
+```jsx
+export const author = 'MDX 大师'
+```
+
+**使用变量：**
+```jsx
+作者是：{author}
+```
+
+---
+
+## 6. 条件渲染 🎯
+
+export const isProduction = false
+
+{isProduction ? (
+  <Callout type="success" title="生产环境">
+    当前运行在生产环境
+  </Callout>
+) : (
+  <Callout type="warning" title="开发环境">
+    当前运行在开发环境，某些功能可能受限
+  </Callout>
+)}
+
+---
+
+## 7. 列表渲染 📝
+
+export const features = [
+  { name: '交互性', desc: '完整的 React 组件支持' },
+  { name: '类型安全', desc: 'TypeScript 完全支持' },
+  { name: '可维护性', desc: 'Markdown 的简洁 + JSX 的强大' },
+  { name: '可扩展性', desc: '自定义组件库' }
+]
+
+<div className="grid md:grid-cols-2 gap-4 my-6">
+  {features.map((feature, index) => (
+    <div key={index} className="p-4 border-2 border-purple-300 rounded-lg bg-purple-50 dark:bg-purple-900/20">
+      <h4 className="font-bold text-lg mb-2">{feature.name}</h4>
+      <p className="text-sm">{feature.desc}</p>
+    </div>
+  ))}
+</div>
+
+---
+
+## 8. 复杂布局 🎨
+
+<div className="grid md:grid-cols-3 gap-4 my-6">
+  <div className="p-6 bg-gradient-to-br from-pink-100 to-purple-100 dark:from-pink-900/20 dark:to-purple-900/20 rounded-lg">
+    <h4 className="text-xl font-bold mb-2">📚 文档</h4>
+    <p className="text-sm">创建交互式文档</p>
+  </div>
+
+  <div className="p-6 bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg">
+    <h4 className="text-xl font-bold mb-2">📝 博客</h4>
+    <p className="text-sm">编写动态博客文章</p>
+  </div>
+
+  <div className="p-6 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg">
+    <h4 className="text-xl font-bold mb-2">🎓 教程</h4>
+    <p className="text-sm">构建互动学习内容</p>
+  </div>
+</div>
+
+---
+
+## 9. 内联样式和类名 🎨
+
+<div className="p-6 my-6 rounded-xl bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white">
+  <h3 className="text-2xl font-bold mb-2">渐变背景卡片</h3>
+  <p>使用 Tailwind CSS 类名创建精美的样式</p>
+</div>
+
+---
+
+## 10. 组件组合 🧩
+
+<Callout type="info" title="组件可以嵌套">
+  <Chart
+    title="嵌套示例"
+    data={[
+      { label: 'HTML', value: 40 },
+      { label: 'CSS', value: 30 },
+      { label: 'JavaScript', value: 30 }
+    ]}
+  />
+
+  在提示框内嵌入图表组件！
+</Callout>
+
+---
+
+## MDX 的核心优势 ✨
+
+1. **Markdown 的简洁性** - 快速编写内容
+2. **React 的强大性** - 完整的组件生态系统
+3. **TypeScript 支持** - 类型安全
+4. **完全可定制** - 自定义组件库
+5. **服务端渲染** - Next.js 完美集成
+6. **开发体验** - 热重载、代码提示
+
+---
+
+## 适用场景 🎯
+
+- ✅ 技术文档
+- ✅ 交互式教程
+- ✅ 博客文章
+- ✅ 营销页面
+- ✅ 组件库文档
+- ✅ API 文档
+
+---
+
+<Callout type="success" title="开始使用 MDX">
+  现在你已经了解了 MDX 的强大功能，可以开始创建自己的交互式内容了！
+
+  **下一步：**
+  1. 创建自定义组件
+  2. 构建组件库
+  3. 编写精彩内容
+</Callout>
+
+---
+
+**创建时间**: {new Date().toLocaleDateString('zh-CN')}

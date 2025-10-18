@@ -39,7 +39,12 @@ export default async function Home() {
           </li>
           <li className="tracking-[-.01em] mt-2">
             <Link href="/blog/hello-mdx" className="text-green-600 dark:text-green-400 hover:underline">
-              查看 MDX 示例页面 →
+              查看 MDX 基础示例 →
+            </Link>
+          </li>
+          <li className="tracking-[-.01em] mt-2">
+            <Link href="/blog/advanced-mdx" className="text-purple-600 dark:text-purple-400 hover:underline">
+              查看 MDX 高级特性演示 🚀 →
             </Link>
           </li>
         </ol>

@@ -1,8 +1,8 @@
 import { getLocale } from 'next-intl/server';
 import { getStrapiEntries } from '@/lib/strapi';
 import { Article } from '@/types/strapi';
-import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import PageWrapper from '@/components/PageWrapper';
 
 /**
  * 示例页面：从 Strapi 获取文章列表
@@ -39,7 +39,7 @@ export default async function StrapiExamplePage() {
   }
 
   return (
-    <div className="min-h-screen p-8 pb-20 sm:p-20">
+    <PageWrapper>
       <header className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold">Strapi CMS 集成示例</h1>
         <LanguageSwitcher />
@@ -137,16 +137,7 @@ export default async function StrapiExamplePage() {
           </p>
         </div>
       )}
-
-      <div className="mt-8">
-        <Link
-          href="/"
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          ← 返回首页
-        </Link>
-      </div>
-    </div>
+    </PageWrapper>
   );
 }
 
