@@ -17,7 +17,6 @@ export default function PageWrapper({
 }: PageWrapperProps) {
   const router = useRouter();
   const pathname = usePathname();
-  console.log("🚀 ~ PageWrapper ~ pathname:", pathname)
   const t = useTranslations('PageWrapper');
 
   const showBackButton = pathname !== '/';
