@@ -7,7 +7,7 @@ export default async function Home() {
   const t = await getTranslations('HomePage');
   
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+    <div className="font-sans grid grid-rows-[0px_1fr_0px] items-center justify-items-center min-h-screen p-2 pb-2 gap-2 sm:p-2">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <div className="flex items-center justify-between w-full gap-4">
           <Image

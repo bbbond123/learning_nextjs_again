@@ -39,7 +39,7 @@ export default async function StrapiExamplePage() {
   }
 
   return (
-    <PageWrapper>
+    <>
       <header className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold">Strapi CMS 集成示例</h1>
         <LanguageSwitcher />
@@ -137,7 +137,7 @@ export default async function StrapiExamplePage() {
           </p>
         </div>
       )}
-    </PageWrapper>
+    </>
   );
 }
 

@@ -1,24 +1,27 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 interface PageWrapperProps {
   children: React.ReactNode;
   title?: string;
-  showBackButton?: boolean;
   backLink?: string;
 }
 
 export default function PageWrapper({
   children,
   title,
-  showBackButton = true,
   backLink = '/'
 }: PageWrapperProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  console.log("🚀 ~ PageWrapper ~ pathname:", pathname)
   const t = useTranslations('PageWrapper');
+
+  const showBackButton = pathname !== '/';
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
@@ -58,7 +61,7 @@ export default function PageWrapper({
         )}
 
         {/* Content */}
-        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 sm:p-8">
+        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-2 sm:p-2">
           {children}
         </div>
       </div>
