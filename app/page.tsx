@@ -37,6 +37,11 @@ export default async function Home() {
               查看 Strapi CMS 集成示例 →
             </Link>
           </li>
+          <li className="tracking-[-.01em] mt-2">
+            <Link href="/blog/hello-mdx" className="text-green-600 dark:text-green-400 hover:underline">
+              查看 MDX 示例页面 →
+            </Link>
+          </li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
